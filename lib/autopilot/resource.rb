@@ -14,7 +14,11 @@ module Autopilot
     private :attributes
 
     def initialize(attributes = {})
-      @id = attributes[:id]
+      @id = if attributes.is_a?(Array)
+              array[0].present? ? array[0][:id] : nil
+            else
+              attributes[:id]
+            end
       define_id_reader if @id
       build_from_attributes(attributes)
     end
@@ -28,9 +32,19 @@ module Autopilot
   private
 
     def build_from_attributes(attributes)
-      @attributes = Utils.hash_without_key(attributes, :id)
+      if attributes.is_a?(Array)
+        @attributes = build_array_attributes(attributes)
+      else
+        @attributes = Utils.hash_without_key(attributes, :id)
+      end
 
       define_attribute_accessors(@attributes.keys)
+    end
+
+    def build_array_attributes(attributes)
+      attributes.each_with_object({}).with_index do |(attribute, hash), index|
+        hash["custom_field_#{index}".to_sym] = attribute
+      end
     end
 
     def define_id_reader

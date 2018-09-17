@@ -17,6 +17,7 @@ require 'autopilot/operations/retrieve'
 require 'autopilot/operations/identify'
 require 'autopilot/operations/trigger_journey'
 require 'autopilot/resources/contact'
+require 'autopilot/resources/custom_field'
 require 'autopilot/resources/list'
 require 'autopilot/resources/trigger'
 

@@ -25,7 +25,7 @@ module Autopilot
       headers['Content-Type'] = 'application/json'
 
       if method == :get
-        uri.query = Utils.to_query(params) unless params.empty?
+        uri.query = Utils.to_query(params) unless params.empty? || params[:path] == "custom_fields"
         response = @http_adapter.request(method, uri, headers)
       else
         data = prepare_data(params)

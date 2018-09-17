@@ -28,8 +28,12 @@ module Autopilot
         module ClassMethods
           def retrieve(opts = {}, client = Autopilot.shared_client)
             opts = Utils.serialize_values(opts)
-            json = client.get_json(find_path, opts)
+            json = client.get_json(find_path(opts[:path]), opts)
             new(json)
+          end
+
+          def find_path(path = nil)
+            path
           end
         end
       end
