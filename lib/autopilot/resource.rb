@@ -15,7 +15,7 @@ module Autopilot
 
     def initialize(attributes = {})
       @id = if attributes.is_a?(Array)
-              array[0].present? ? array[0][:id] : nil
+              attributes[0].present? ? attributes[0][:id] : nil
             else
               attributes[:id]
             end
