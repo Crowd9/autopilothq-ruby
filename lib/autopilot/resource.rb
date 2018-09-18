@@ -42,7 +42,8 @@ module Autopilot
     end
 
     def build_array_attributes(attributes)
-      attributes.each_with_object({}).with_index do |(attribute, hash), index|
+      return {} unless attributes.present?
+      attributes.sort_by { |key| key[:name] }.each_with_object({}).with_index do |(attribute, hash), index|
         hash["custom_field_#{index}".to_sym] = attribute
       end
     end
