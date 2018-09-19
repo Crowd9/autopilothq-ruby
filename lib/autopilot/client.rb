@@ -17,6 +17,10 @@ module Autopilot
       perform_request(:post, path, params)
     end
 
+    def delete_json(path, params = {})
+      perform_request(:delete, path, params)
+    end
+
   private
 
     def perform_request(method, path, params)
