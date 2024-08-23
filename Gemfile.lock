@@ -23,7 +23,7 @@ GEM
       method_source (~> 1.0)
     public_suffix (5.0.1)
     rake (13.0.6)
-    rexml (3.3.3)
+    rexml (3.3.6)
       strscan
     strscan (3.1.0)
     vcr (6.2.0)
